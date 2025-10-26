@@ -16,11 +16,11 @@ export default function Player({ initialName, symbol, isActive, onChangeName }) 
     setPlayerName(event.target.value);
   }
 
-  let EditablePlayerName = <span className="player-name">{playerName}</span>;
+  let EditablePlayerName = <span className="player-name block">{playerName}</span>;
 
   if (isEditing) {
     EditablePlayerName = (
-      <input
+      <input className="player-input"
         type="text"
         required
         value={playerName}

@@ -49,3 +49,18 @@ button {
 button:hover {
   background-color: #00b248;
 }
+.player-input {
+  padding: 8px 12px;
+  border: 2px solid #4CAF50;
+  border-radius: 6px;
+  font-size: 16px;
+  outline: none;
+  transition: all 0.3s ease;
+  width: 100px;
+  color: #111;
+}
+
+.player-input:focus {
+  border-color: #00b248;
+  box-shadow: 0 0 5px #4CAF50;
+}
