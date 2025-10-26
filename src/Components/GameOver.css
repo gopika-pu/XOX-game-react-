@@ -1,0 +1,55 @@
+#game-over {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(145deg, #11eb8d, #00e676);
+  color: #fff;
+  padding: 2rem 3rem;
+  border-radius: 1rem;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+  text-align: center;
+  z-index: 1000;
+  animation: fadeIn 0.4s ease-out;
+}
+
+#game-over h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  letter-spacing: 1px;
+}
+
+#game-over p {
+  margin: 0.5rem 0;
+  font-size: 1.2rem;
+}
+
+#game-over button {
+  margin-top: 1rem;
+  background-color: #fff;
+  color: #2a2a72;
+  border: none;
+  padding: 0.6rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#game-over button:hover {
+  background-color: #2f722a;
+  color: #fff;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -45%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}

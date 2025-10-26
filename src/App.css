@@ -1,0 +1,29 @@
+/* App.css */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #222, #555);
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+
+main {
+  width: 100%;
+  max-width: 500px;
+}
+
+#game-container {
+  background-color: #2c2c2c;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+  text-align: center;
+}
+
