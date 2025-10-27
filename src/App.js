@@ -81,18 +81,18 @@ function App() {
   return (
     <main>
       <div id="game-container">
-        <h2>Tic Tac Game</h2>
+        <h2 class="mb-5">XOX Game</h2>
         <ol id="players" className="highlight-container">
           <Player
             initialName="Player 1 "
-            symbol="x"
-            isActive={activePlayer === "x"}
+            symbol="X"
+            isActive={activePlayer === "X"}
             onChangeName={handlePlayerNameChange}
           />
           <Player
             initialName="Player 2 "
-            symbol="o"
-            isActive={activePlayer === "o"}
+            symbol="O"
+            isActive={activePlayer === "O"}
             onChangeName={handlePlayerNameChange}
           />
         </ol>
