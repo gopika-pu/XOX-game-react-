@@ -1,47 +1,50 @@
-export const WINNING_COMBINATIONS = [
+// winning-combinations.js
+export function generateWinningCombinations(boardSize, winLength = 5) {
+  const combinations = [];
+
   // Rows
-  [
-    { row: 0, column: 0 },
-    { row: 0, column: 1 },
-    { row: 0, column: 2 },
-  ],
-  [
-    { row: 1, column: 0 },
-    { row: 1, column: 1 },
-    { row: 1, column: 2 },
-  ],
-  [
-    { row: 2, column: 0 },
-    { row: 2, column: 1 },
-    { row: 2, column: 2 },
-  ],
+  for (let row = 0; row < boardSize; row++) {
+    for (let startCol = 0; startCol <= boardSize - winLength; startCol++) {
+      const combo = [];
+      for (let offset = 0; offset < winLength; offset++) {
+        combo.push({ row, column: startCol + offset });
+      }
+      combinations.push(combo);
+    }
+  }
 
   // Columns
-  [
-    { row: 0, column: 0 },
-    { row: 1, column: 0 },
-    { row: 2, column: 0 },
-  ],
-  [
-    { row: 0, column: 1 },
-    { row: 1, column: 1 },
-    { row: 2, column: 1 },
-  ],
-  [
-    { row: 0, column: 2 },
-    { row: 1, column: 2 },
-    { row: 2, column: 2 },
-  ],
+  for (let col = 0; col < boardSize; col++) {
+    for (let startRow = 0; startRow <= boardSize - winLength; startRow++) {
+      const combo = [];
+      for (let offset = 0; offset < winLength; offset++) {
+        combo.push({ row: startRow + offset, column: col });
+      }
+      combinations.push(combo);
+    }
+  }
 
-  // Diagonals
-  [
-    { row: 0, column: 0 },
-    { row: 1, column: 1 },
-    { row: 2, column: 2 },
-  ],
-  [
-    { row: 0, column: 2 },
-    { row: 1, column: 1 },
-    { row: 2, column: 0 },
-  ],
-];
+  // Diagonals ↘️
+  for (let startRow = 0; startRow <= boardSize - winLength; startRow++) {
+    for (let startCol = 0; startCol <= boardSize - winLength; startCol++) {
+      const combo = [];
+      for (let offset = 0; offset < winLength; offset++) {
+        combo.push({ row: startRow + offset, column: startCol + offset });
+      }
+      combinations.push(combo);
+    }
+  }
+
+  // Diagonals ↙️
+  for (let startRow = 0; startRow <= boardSize - winLength; startRow++) {
+    for (let startCol = winLength - 1; startCol < boardSize; startCol++) {
+      const combo = [];
+      for (let offset = 0; offset < winLength; offset++) {
+        combo.push({ row: startRow + offset, column: startCol - offset });
+      }
+      combinations.push(combo);
+    }
+  }
+
+  return combinations;
+}

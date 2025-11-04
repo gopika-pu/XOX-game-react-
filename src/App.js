@@ -3,14 +3,16 @@ import GameBoard from "./Components/GameBoard";
 import "./App.css";
 import { useState } from "react";
 import Log from "./Components/Log";
-import { WINNING_COMBINATIONS } from "./winning-combinations";
 import GameOver from "./Components/GameOver";
+import { generateWinningCombinations } from "./winning-combinations.js";
 
-const initialGameBoard = [
-  [null, null, null],
-  [null, null, null],
-  [null, null, null],
-];
+
+const BOARD_SIZE = 5;
+const WINNING_COMBINATIONS = generateWinningCombinations(BOARD_SIZE);
+
+const initialGameBoard = Array.from({ length: BOARD_SIZE }, () =>
+  Array(BOARD_SIZE).fill(null)
+);
 
 function deriveActivePlayer(gameTurns) {
   let currentPlayer = "x";
@@ -35,24 +37,28 @@ function App() {
   let winner = null;
 
   for (const combination of WINNING_COMBINATIONS) {
-    const firstSquareSymbol =
-      gameBoard[combination[0].row][combination[0].column];
-    const secondSquareSymbol =
-      gameBoard[combination[1].row][combination[1].column];
-    const thirdSquareSymbol =
-      gameBoard[combination[2].row][combination[2].column];
+  const firstSymbol = gameBoard[combination[0].row][combination[0].column];
+  if (!firstSymbol) continue;
 
-    if (
-      firstSquareSymbol &&
-      firstSquareSymbol === secondSquareSymbol &&
-      firstSquareSymbol === thirdSquareSymbol
-    ) {
-      winner = players[firstSquareSymbol];
+  let isWinningCombo = true;
+  for (let i = 1; i < combination.length; i++) {
+    const { row, column } = combination[i];
+    if (gameBoard[row][column] !== firstSymbol) {
+      isWinningCombo = false;
       break;
     }
   }
 
-  const hasDraw = gameTurns.length === 9 && !winner;
+  if (isWinningCombo) {
+    winner = players[firstSymbol];
+    break;
+  }
+}
+
+
+  
+
+const hasDraw = gameTurns.length === BOARD_SIZE * BOARD_SIZE && !winner;
 
   function handleSelectSquare(rowIndex, colIndex) {
     setGameTurns((prevTurns) => {
